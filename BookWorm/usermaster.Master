@@ -1,0 +1,55 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="usermaster.master.cs" Inherits="BookWorm.usermaster" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+   <title>The Book Shop</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   
+    <script src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Lateef|Zhi+Mang+Xing&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cabin+Sketch:700|Charm|Orbitron|Teko:700" rel="stylesheet"/>
+    <link href="css/font-awesome.css" rel="stylesheet" />
+
+     <link href="css/entrystyle.css" rel="stylesheet" />
+   <asp:ContentPlaceHolder ID="head" runat="server">
+        
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+       
+     
+        <main>
+              <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+              </asp:ContentPlaceHolder>
+        </main>
+            
+        <footer>
+            <ul class="footer-link-1">
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Disclaimer</a></li>
+                </ul>
+                <ul class="footer-link-2">
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Contact us</a></li>
+                </ul>
+                <ul class="footer-social-media">
+                    <li><a href="#"><img src="images/facebook.png" alt="faceook-icon" /></a></li>  
+                    <li><a href="#"><img src="images/twitter.png" alt="gmail-icon" /></a></li>  
+                    <li><a href="#"><img src="images/instagram.png" alt="twitter-icon" /></a></li>
+                </ul>
+            
+        </footer>
+       
+    </form>
+</body>
+</html>

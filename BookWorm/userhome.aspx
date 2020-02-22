@@ -253,28 +253,34 @@
       
       </div>
       <div class="uhomedata">
-          <asp:Repeater ID="Repeater1" runat="server">
+          <asp:Repeater ID="Repeater1" runat="server" OnItemDataBound="Repeater1_ItemDataBound">
               <ItemTemplate>
                   <div class="repeater">
                     <table>
-                        <tr><td colspan="2" id="imgbox">
-                            <asp:Image ID="Image1" runat="server" ImageUrl='<%#Eval("bookcover") %>' Height="250px" Width="200px" style="display:block;margin:0 auto;"/>
-                            </td></tr>
+                        
+                        <tr><td id="imgbox" colspan="2">
+                            <asp:LinkButton ID="LinkButton2" runat="server" CommandArgument='<%#Eval("bookid") %>' OnClick="LinkButton2_Click"><asp:Image ID="Image1" runat="server" ImageUrl='<%#Eval("bookcover") %>' Height="250px" Width="200px" style="display:block;margin:0 auto;" onClick="viewdetails();"/></asp:LinkButton>
+                            </td>
+                           
+                   
+                        </tr>
 
-                     <tr><td>Book ID:</td><td><%#Eval("bookid") %></td></tr>
-                     <tr><td>Title:</td><td><%#Eval("title") %></td></tr>
-                     <tr><td>Author:</td><td><%#Eval("author") %></td></tr>
-                     <tr><td>Price:</td><td><%#Eval("price") %></td></tr>
-                     <tr><td>Category:</td><td><%#Eval("category") %></td></tr>
-                     <tr><td>Condition:</td><td><%#Eval("condition") %></td></tr>
-                     <tr><td>Seller id:</td><td><%#Eval("sellerid") %></td></tr>
+                     <tr><td style="width:100px;">Book ID:</td><td style="width:250px;"><%#Eval("bookid") %></td> </tr>
+                     <tr><td style="width:100px;">Title:</td><td><%#Eval("title") %></td></tr>
+                     <tr><td style="width:100px;">Author:</td><td><%#Eval("author") %></td></tr>
+                     <tr><td style="width:100px;">Price:</td><td><%#Eval("price") %></td></tr>
+                     <tr><td style="width:100px;">Category:</td><td><%#Eval("category") %></td></tr>
+                     <tr><td style="width:100px;">Condition:</td><td><%#Eval("condition") %></td></tr>
+                     <tr><td style="width:100px;">Seller id:</td><td><%#Eval("sellerid") %></td></tr>
+                      <tr><td>Location:</td><td><%#Eval("location") %></td></tr>
 
                      <tr><td>
                          <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-sm btn-primary" CommandArgument='<%#Eval("sellerid")%>' OnClick="LinkButton1_Click">Message</asp:LinkButton>
                         </td>
                          <td>
-                             <asp:Button ID="Button2" runat="server" Text="AddtoWishlist" CssClass="btn btn-sm btn-danger" OnClick="Button2_Click" CommandArgument='<%#Eval("bookid")%>' CommandName='<%#Eval("title")%>' /></td>
-                     </tr>
+                                <asp:ImageButton ID="ImageButton1" runat="server" CommandArgument='<%#Eval("bookid")%>' CommandName='<%#Eval("title")%>' Height="20px" Width="20px" ImageUrl="~/images/wishfalse.png" OnClick="ImageButton1_Click"/>
+            </td></tr>
+                       
                       
                     </table>
                 </div>

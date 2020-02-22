@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="chat.aspx.cs" Inherits="BookWorm.chat" %>
 <!DOCTYPE html>
 
- <html lang="en">
+ 
      <head>
          <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
           <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -141,24 +141,31 @@
                                   <p style="text-align:center;direction:block;margin:0 auto;text-decoration:underline;">FRIENDLIST</p>
                                  
                                  
-                                  <asp:DataList ID="DataList1" runat="server" style="margin-left:25px;" OnItemDataBound="DataList1_ItemDataBound" >
+                                  <asp:DataList ID="DataList1" runat="server" style="margin-left:25px;"  DataKeyField="friendsid" DataSourceID="SqlDataSource1" OnItemDataBound="DataList1_ItemDataBound">
                                       <ItemTemplate>
-                                          <div class="lv-item media"> 
-                                              <div class="lv-avatar pull-left"> 
-                                                  <%--<img src="./images/bhai.jpg" alt=""> 
-                                               
-                                              </div>
-                                              <div class="media-body"> 
-                                                  <div class="lv-title">
-                                                    
-                                                      <%--<asp:Label ID="Label2" runat="server" Text='<%# Bind("Name") %>'></asp:Label>--%></div>
-                                                  <asp:LinkButton ID="LinkButton1" ForeColor="Black" runat="server" Text='<%# Bind("recievername") %>' OnClick="LinkButton1_Click" CommandArgument='<%# Bind("recievername")%>' ></asp:LinkButton>
-                                                  
-                                                  <%--<div class="lv-small"> Acadnote a world class website is processing surveys for </div>--%>
-                                              </div>
-                                          </div>
+                                         
+                                         
+                                          <asp:LinkButton ID="LinkButton1" runat="server" Text='<%# Eval("recievername") %>' OnClick="LinkButton1_Click" CommandArgument='<%# Eval("recievername") %>' ForeColor="Black"></asp:LinkButton>
+                                         
                                       </ItemTemplate>
                                   </asp:DataList>
+                                      
+
+                                      
+                                  
+                                      
+
+                                      
+                                  <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:bookshopdataConnectionString4 %>" SelectCommand="SELECT friendsid, sendername, recievername, senderid, recieverid FROM friends WHERE (sendername = @sendername) OR (recievername = @recievername)">
+                                      <SelectParameters>
+                                          <asp:ControlParameter ControlID="Label1" Name="sendername" PropertyName="Text" />
+                                          <asp:ControlParameter ControlID="Label1" Name="recievername" PropertyName="Text" />
+                                      </SelectParameters>
+                                  </asp:SqlDataSource>
+                                      
+
+                                      
+                                  
                                       
 
                                       

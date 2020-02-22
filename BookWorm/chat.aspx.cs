@@ -32,11 +32,11 @@ namespace BookWorm
                         Label2.Text = row["sellername"].ToString();
                     }
                 }
-                Session["msgid"] = "";
+
                 conn.Close();
             }
 
-            Loadlist();
+            // Loadlist();
 
         }
 
@@ -119,63 +119,84 @@ namespace BookWorm
                 SqlDataAdapter da = new SqlDataAdapter(obj);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
-                int id;
+
                 if (dt.Rows.Count > 0)
                 {
-                    id = int.Parse(dt.Rows[0]["userid"].ToString());
+                    int id = int.Parse(dt.Rows[0]["userid"].ToString());
+                    SqlCommand obj2 = new SqlCommand("select * from friends where sendername='" + Label1.Text + "' and recievername='" + Label2.Text + "' or sendername='" + Label2.Text + "' and recievername='" + Label1.Text + "' ", conn);
+                    SqlDataAdapter da2 = new SqlDataAdapter(obj2);
+                    DataTable dt2 = new DataTable();
+                    da2.Fill(dt2);
 
-                    SqlCommand obj2 = new SqlCommand("insert into friends values('" + Label1.Text + "','" + Label2.Text + "','" + Session["userid"] + "','" + id + "')", conn);
-                    obj2.ExecuteNonQuery();
+                    if (dt2.Rows.Count == 0)
+                    {
+                        //if (dt2.Rows[0]["recieverid"] != dt.Rows[0]["userid"]&& dt2.Rows[0]["senderid"] != dt.Rows[0]["userid"])
+                        //{
+                        SqlCommand obj3 = new SqlCommand("insert into friends values('" + Label1.Text + "','" + Label2.Text + "','" + Session["userid"] + "','" + Session["msgid"] + "')", conn);
+                        obj3.ExecuteNonQuery();
+                        //}
+                    }
+                    //else if (dt2.Rows.Count > 0)
+                    //{
+                    //    SqlCommand obj3 = new SqlCommand("insert into friends values('" + Label1.Text + "','" + Label2.Text + "','" + Session["userid"] + "','" + id + "')", conn);
+                    //    obj3.ExecuteNonQuery();
+                    //}
+                    conn.Close();
+
+                    Loadchat();
                 }
-                conn.Close();
+                else
+                {
+                    Label3.Visible = true;
+                    Label3.Text = "Cannot send a blank message";
+                }
 
-                Loadchat();
             }
-            else
-            {
-                Label3.Visible = true;
-                Label3.Text = "Cannot send a blank message";
-            }
-
         }
-
 
         protected void DataList1_ItemDataBound(object sender, DataListItemEventArgs e)
         {
             if (e.Item.ItemType == ListItemType.Item)
             {
                 LinkButton linkbutton = e.Item.FindControl("LinkButton1") as LinkButton;
-                if (linkbutton.Text == Label1.Text)
+                string name = Session["username"].ToString();
+                SqlCommand cmd = new SqlCommand("select * from friends where sendername='" + name + "'  or recievername='" + name + "'  ", conn);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                if (dt.Rows.Count > 0)
                 {
-                    SqlCommand cmd = new SqlCommand("select * from friends where recievername='" + Label1.Text + "'", conn);
 
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-                    //    //        SqlCommand obj = new SqlCommand("select friendsid from friends where recievername='" + Label1.Text + "'", conn);
-
-                    //    //        SqlDataAdapter da2 = new SqlDataAdapter(cmd);
-                    //    //        DataTable dt2 = new DataTable();
-                    //    //        da2.Fill(dt2);
-                    if (dt.Rows.Count > 0)
+                    if (name == dt.Rows[0]["sendername"].ToString())
                     {
-                        foreach (DataRow row in dt.Rows)
-                        {
-                            linkbutton.Text = row["sendername"].ToString();
-                            linkbutton.CommandArgument = row["sendername"].ToString();
-                        }
+                        linkbutton.Text = dt.Rows[0]["recievername"].ToString();
+                        linkbutton.CommandArgument = dt.Rows[0]["recievername"].ToString();
                     }
-
+                    else if (name == dt.Rows[0]["recievername"].ToString())
+                    {
+                        linkbutton.Text = dt.Rows[0]["sendername"].ToString();
+                        linkbutton.CommandArgument = dt.Rows[0]["sendername"].ToString();
+                    }
                 }
+               
+
 
             }
         }
     }
 }
-         //    //            int id1;
-         //    //            int id2;
-         //    //            foreach (DataRow row in dt.Rows)
-         //    //            {
+
+
+
+
+        //    }
+        //}
+        //    //            int id1;
+        //    //            int id2;
+        //    //            foreach (DataRow row in dt.Rows)
+        //    //            {
 
 //    //                foreach (DataRow srow in dt2.Rows)
 //    //                {

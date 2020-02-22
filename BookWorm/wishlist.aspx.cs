@@ -60,5 +60,7 @@ namespace BookWorm
             Response.Write("<script>alert('Book deleted from Wishlist');</script>");
             BindRepeater();
         }
+
+       
     }
 }

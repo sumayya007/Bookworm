@@ -51,7 +51,7 @@
                            </tr>
                             <tr>
                                <td>
-                                   <asp:TextBox ID="TextBox2" runat="server" AutoCompleteType="Disabled" ForeColor="White" class="myInput" BorderColor="#CC0066" TextMode="Password"></asp:TextBox></td>
+                                   <asp:TextBox ID="TextBox2" runat="server" AutoCompleteType="Disabled" ForeColor="White" class="myInput" BorderColor="#CC0066" ></asp:TextBox></td>
                            </tr>
                             <tr>
                                <td>

@@ -74,6 +74,7 @@
     <Content Include="adminemail.aspx" />
     <Content Include="adminregsellers.aspx" />
     <Content Include="adminregusers.aspx" />
+    <Content Include="bookdetails.aspx" />
     <Content Include="bookwormscript.sql" />
     <Content Include="chat.aspx" />
     <Content Include="contactus.aspx" />
@@ -129,6 +130,8 @@
     <Content Include="images\shelf2.jpg" />
     <Content Include="images\twitter.png" />
     <Content Include="images\novel.jpg" />
+    <Content Include="images\wishfalse.png" />
+    <Content Include="images\wishtrue.png" />
     <Content Include="js\all.js" />
     <Content Include="js\all.min.js" />
     <Content Include="js\bootstrap.js" />
@@ -198,6 +201,13 @@
     </Compile>
     <Compile Include="adminregusers.aspx.designer.cs">
       <DependentUpon>adminregusers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="bookdetails.aspx.cs">
+      <DependentUpon>bookdetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="bookdetails.aspx.designer.cs">
+      <DependentUpon>bookdetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="chat.aspx.cs">
       <DependentUpon>chat.aspx</DependentUpon>
